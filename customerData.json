@@ -1,0 +1,5 @@
+ { "name": "Benjamin Garrison", "gender": "male", "deptid": "100", "age": "32", "salary": "3000" }
+ { "name": "Holland Drake", "gender": "male", "deptid": "200", "age": "40", "salary": "4500" }
+ { "name": "Burks Velasquez", "gender": "male", "deptid": "100", "age": "26", "salary": "2700" }
+ { "name": "June Rutledge", "gender": "female", "deptid": "100", "age": "51", "salary": "4300" }
+ { "name": "Nielsen Knapp", "gender": "male", "deptid": "200", "age": "44", "salary": "6500" }

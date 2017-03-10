@@ -23,8 +23,8 @@ if sys.platform.startswith('win'):
     os.environ['SPARK_HOME'] = 'C:/Spark/spark-2.0.0-bin-hadoop2.7'
 #other platforms - linux/mac
 else:
-    os.chdir("/Users/kponnambalam/Dropbox/V2Maestros/Modules/Apache Spark/Python")
-    os.environ['SPARK_HOME'] = '/users/kponnambalam/products/spark-2.0.0-bin-hadoop2.7'
+    os.chdir("/Users/jlyang/Documents/Intern&Job/Spark_Python_Do_Big_Data_Analytics")
+    os.environ['SPARK_HOME'] = '/Users/jlyang/Spark/spark-2.1.0-bin-hadoop2.7'
 
 os.curdir
 
@@ -37,7 +37,7 @@ SPARK_HOME = os.environ['SPARK_HOME']
 sys.path.insert(0,os.path.join(SPARK_HOME,"python"))
 sys.path.insert(0,os.path.join(SPARK_HOME,"python","lib"))
 sys.path.insert(0,os.path.join(SPARK_HOME,"python","lib","pyspark.zip"))
-sys.path.insert(0,os.path.join(SPARK_HOME,"python","lib","py4j-0.10.1-src.zip"))
+sys.path.insert(0,os.path.join(SPARK_HOME,"python","lib","py4j-0.10.4-src.zip"))
 
 #Initialize SparkSession and SparkContext
 from pyspark.sql import SparkSession
@@ -47,10 +47,10 @@ from pyspark import SparkContext
 SpSession = SparkSession \
     .builder \
     .master("local[2]") \
-    .appName("V2 Maestros") \
+    .appName("jlyang_spark") \
     .config("spark.executor.memory", "1g") \
     .config("spark.cores.max","2") \
-    .config("spark.sql.warehouse.dir", "file:///c:/temp/spark-warehouse")\
+    .config("spark.sql.warehouse.dir", "/Users/jlyang/Spark/spark-warehouse")\
     .getOrCreate()
     
 #Get the Spark Context from Spark Session    

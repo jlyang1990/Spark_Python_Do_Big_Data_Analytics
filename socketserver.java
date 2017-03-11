@@ -17,7 +17,7 @@ public class socketserver {
 	    PrintStream os;
 	    Socket clientSocket = null;
 	    
-    	Path path = FileSystems.getDefault().getPath("C:\Users\kumaran\Dropbox\V2Maestros\Modules\Apache Spark", "streamingtweets.txt");
+    	Path path = FileSystems.getDefault().getPath("/Users/jlyang/Documents/Intern&Job/Spark_Python_Do_Big_Data_Analytics", "streamingtweets.txt");
 	    List<String> lines = null;
 		try {
 			lines = Files.readAllLines(path,StandardCharsets.UTF_8);

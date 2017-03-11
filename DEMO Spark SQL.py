@@ -76,6 +76,8 @@ empDf.createOrReplaceTempView("employees")
 SpSession.sql("select * from employees where salary > 4000").show()
 
 #to pandas data frame
+#spark data frame is distributed across clusters
+#pandas data frame is stored in the master node
 empPands = empDf.toPandas()
 for index, row in empPands.iterrows():
     print(row["salary"])

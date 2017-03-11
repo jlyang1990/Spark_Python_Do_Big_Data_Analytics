@@ -42,6 +42,14 @@ irisMap.collect()
 irisDF = SpSession.createDataFrame(irisMap)
 irisDF.select("*").show()
 
+# Directly load a csv file into a DF
+irisDF = SpSession.read.csv("iris.csv", header = True)
+irisDF = irisDF.withColumnRenamed("Sepal.Length", "SepalLength")\
+.withColumnRenamed("Sepal.Width", "SepalWidth")\
+.withColumnRenamed("Petal.Length", "PetalLength")\
+.withColumnRenamed("Petal.Width", "PetalWidth")
+irisDF.show()
+
 """
 -----------------------------------------------------------------------------
 In the irisDF, filter for rows whose PetalWidth is greater than 0.4
@@ -61,8 +69,8 @@ irisDF.filter( irisDF["PetalWidth"] > 0.4).count()
 Petal Width by Species using that table.
 -----------------------------------------------------------------------------
 """
-irisDF.registerTempTable("iris")
-sqlContext.sql("select Species,avg(PetalWidth) from iris group by Species")\
+irisDF.createOrReplaceTempView("iris")
+SpSession.sql("select Species, avg(PetalWidth) from iris group by Species")\
 .show()
 
 """

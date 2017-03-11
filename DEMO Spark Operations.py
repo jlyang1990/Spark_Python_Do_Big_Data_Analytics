@@ -17,7 +17,7 @@ Code Samples : Spark Processing
 
 #Load from a collection
 collData = SpContext.parallelize([4,3,8,5,8])
-collData.collect()
+collData.collect()  # bring the entire RDD to the driver node, could be expensive
 
 #Load the file. Lazy initialization
 autoData = SpContext.textFile("auto-data.csv")
@@ -109,7 +109,7 @@ def getMPG( autoStr) :
 
 #find average MPG-City for all cars    
 autoData.reduce(lambda x,y : getMPG(x) + getMPG(y)) \
-    / (autoData.count()-1)
+    / (autoData.count()-1.0)  # account for header line
     
 #............................................................................
 ##   Working with Key/Value RDDs

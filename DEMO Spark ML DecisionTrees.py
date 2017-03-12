@@ -63,7 +63,7 @@ stringIndexer = StringIndexer(inputCol="SPECIES", outputCol="IND_SPECIES")
 si_model = stringIndexer.fit(irisDf)
 irisNormDf = si_model.transform(irisDf)
 
-irisNormDf.select("SPECIES","IND_SPECIES").distinct().collect()
+irisNormDf.select("SPECIES","IND_SPECIES").distinct().show()
 irisNormDf.cache()
 
 """--------------------------------------------------------------------------
@@ -75,7 +75,7 @@ irisNormDf.describe().show()
 
 #Find correlation between predictors and target
 for i in irisNormDf.columns:
-    if not( isinstance(irisNormDf.select(i).take(1)[0][0], str)) :
+    if not( isinstance(irisNormDf.select(i).take(1)[0][0], unicode)) :
         print( "Correlation to Species for ", i, \
                     irisNormDf.stat.corr('IND_SPECIES',i))
 
@@ -107,7 +107,7 @@ Perform Machine Learning
 (trainingData, testData) = irisLpDf.randomSplit([0.9, 0.1])
 trainingData.count()
 testData.count()
-testData.collect()
+testData.show()
 
 from pyspark.ml.classification import DecisionTreeClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
@@ -122,7 +122,7 @@ dtModel.depth
 
 #Predict on the test data
 predictions = dtModel.transform(testData)
-predictions.select("prediction","species","label").collect()
+predictions.select("prediction","species","label").show()
 
 #Evaluate accuracy
 evaluator = MulticlassClassificationEvaluator(predictionCol="prediction", \

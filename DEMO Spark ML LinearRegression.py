@@ -84,7 +84,7 @@ autoDf.select("MPG","CYLINDERS").describe().show()
 
 #Find correlation between predictors and target
 for i in autoDf.columns:
-    if not( isinstance(autoDf.select(i).take(1)[0][0], str)) :
+    if not( isinstance(autoDf.select(i).take(1)[0][0], unicode)) :
         print( "Correlation to MPG for ", i, autoDf.stat.corr('MPG',i))
 
 

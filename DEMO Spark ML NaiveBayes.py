@@ -78,7 +78,7 @@ pipeline = Pipeline(stages=[tokenizer, hashingTF, \
 
 #Build a model with a pipeline
 nbModel=pipeline.fit(trainingData)
-#Predict on test data
+#Predict on test data (will automatically go through pipeline)
 prediction=nbModel.transform(testData)
 
 #Evaluate accuracy

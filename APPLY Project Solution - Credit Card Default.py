@@ -17,7 +17,7 @@ Solution for the APPLY project in this course
 Load Data from the data file
 --------------------------------------------------------------------------"""
 #Load the file into a RDD
-ccRaw = SpContext.textFile("C:\\Users\\kumaran\\Dropbox\\V2Maestros\\Courses\\Spark n X - Do Big Data Analytics and ML\\Python\\credit-card-default-1000.csv")
+ccRaw = SpContext.textFile("credit-card-default-1000.csv")
 ccRaw.take(5)
 
 #Remove header row
@@ -59,8 +59,8 @@ def convertToRow(instr) :
     #amounts or use the average for future predictions
     avgBillAmt = (float(attList[12]) +  \
                     float(attList[13]) + \
+                    float(attList[14]) + \
                     float(attList[15]) + \
-                    float(attList[16]) + \
                     float(attList[16]) + \
                     float(attList[17]) ) / 6.0
                     

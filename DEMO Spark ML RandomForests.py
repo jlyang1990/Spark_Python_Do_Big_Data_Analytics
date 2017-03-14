@@ -48,6 +48,7 @@ Cleanup Data
 # Change labels to numeric ones and build a Row object
 
 import math
+from pyspark.sql import Row
 from pyspark.ml.linalg import Vectors
 
 def transformToNumeric( inputStr) :
@@ -104,7 +105,7 @@ bankData.describe().show()
 
 #Find correlation between predictors and target
 for i in bankData.columns:
-    if not( isinstance(bankData.select(i).take(1)[0][0], str)) :
+    if not( isinstance(bankData.select(i).take(1)[0][0], unicode)) :
         print( "Correlation to OUTCOME for ", i, \
             bankData.stat.corr('OUTCOME',i))
 
@@ -169,7 +170,7 @@ rmModel = rmClassifer.fit(trainingData)
 
 #Predict on the test data
 predictions = rmModel.transform(testData)
-predictions.select("prediction","indexed","label","pcaFeatures").collect()
+predictions.select("prediction","indexed","label","pcaFeatures").show()
 evaluator = MulticlassClassificationEvaluator(predictionCol="prediction", \
                     labelCol="indexed",metricName="accuracy")
 evaluator.evaluate(predictions)      
